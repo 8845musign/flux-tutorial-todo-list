@@ -30,6 +30,13 @@ Dispatcher.prototype = assign({}, Dispatcher.prototype,{
     });
 
     _promises = [];
+  },
+
+  waitFor: function(promiseIndexes, callback) {
+    var selectedPromises = promiseIndexes.map(function(index){
+      return _promises[index];
+    });
+    return Promise.all(selectedPromises).then(callback);
   }
 });
 
